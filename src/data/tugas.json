@@ -1,0 +1,42 @@
+[
+    {
+        "judul": "Tugas Kuliah App",
+        "matkul": "Pengembangan Aplikasi Web",
+        "semester": 5,
+        "pertemuan": 6,
+        "tipe": "web",
+        "url": "https://tugas-kuliah-app.nugasgas.my.id",
+        "thumbnail": "/thumbs/tugas-kuliah-app.png",
+        "ditambahkan": "2026-11-16"
+    },
+    {
+        "judul": "Contoh Tugas PDF",
+        "matkul": "Contoh Mata Kuliah",
+        "semester": 5,
+        "pertemuan": 3,
+        "tipe": "pdf",
+        "url": "/files/contoh-tugas.pdf",
+        "thumbnail": "/thumbs/contoh-tugas-pdf.png",
+        "ditambahkan": "2026-10-05"
+    },
+    {
+        "judul": "Contoh Tugas Link",
+        "matkul": "Contoh Mata Kuliah",
+        "semester": 6,
+        "pertemuan": 2,
+        "tipe": "link",
+        "url": "https://drive.google.com/",
+        "thumbnail": "/thumbs/contoh-tugas-link.png",
+        "ditambahkan": "2026-11-04"
+    },
+    {
+        "judul": "Contoh Tugas Web",
+        "matkul": "Contoh Mata Kuliah",
+        "semester": 7,
+        "pertemuan": 1,
+        "tipe": "web",
+        "url": "https://contoh-tugas-web.nugasgas.my.id",
+        "thumbnail": "/thumbs/contoh-tugas-web.png",
+        "ditambahkan": "2026-11-03"
+    }
+]
