@@ -68,3 +68,38 @@ export function WeatherIcon({ kind, className }: P & { kind: WeatherKind }) {
         </svg>
     );
 }
+
+export function FileIcon({ className }: { className?: string }) {
+    return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+            <path
+                className="fill-folder"
+                d="M6.5 2.5h7.7l5.3 5.3v12.2a1.5 1.5 0 0 1-1.5 1.5h-11.5A1.5 1.5 0 0 1 5 20V4a1.5 1.5 0 0 1 1.5-1.5Z"
+            />
+            <path
+                d="M8.5 12h7M8.5 15.5h7"
+                stroke="#06120F"
+                strokeOpacity=".55"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                fill="none"
+            />
+        </svg>
+    );
+}
+
+export function ArrowDownIcon({ className }: { className?: string }) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+            <path d="M12 4v16m0 0-6-6m6 6 6-6" />
+        </svg>
+    );
+}
+
+export function ArrowUpRightIcon({ className }: { className?: string }) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9" />
+        </svg>
+    );
+}

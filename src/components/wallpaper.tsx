@@ -1,70 +1,85 @@
-import type { WeatherKind } from "@/lib/weather";
+"use client";
 
-type P = { className?: string };
+import { useEffect, useRef, type CSSProperties } from "react";
 
-export function FolderIcon({ className }: P) {
+type Band = {
+    left: number; top: number; w: number; h: number;
+    color: string; rot: number; dx: string; dy: string; dur: number;
+};
+
+const LAYERS: { depth: number; blur: number; bands: Band[] }[] = [
+    {
+        depth: 12,
+        blur: 110,
+        bands: [
+            { left: -10, top: 4, w: 80, h: 40, color: "rgb(11 127 134 / .6)", rot: -16, dx: "6%", dy: "8%", dur: 80 },
+            { left: 30, top: 50, w: 75, h: 40, color: "rgb(24 181 138 / .35)", rot: -20, dx: "-6%", dy: "-6%", dur: 95 },
+        ],
+    },
+    {
+        depth: 26,
+        blur: 70,
+        bands: [
+            { left: -12, top: 58, w: 60, h: 20, color: "rgb(24 181 138 / .5)", rot: -14, dx: "8%", dy: "-10%", dur: 65 },
+            { left: 50, top: 26, w: 50, h: 18, color: "rgb(184 242 58 / .3)", rot: -22, dx: "-8%", dy: "10%", dur: 75 },
+        ],
+    },
+    {
+        depth: 44,
+        blur: 36,
+        bands: [
+            { left: 8, top: 20, w: 55, h: 6, color: "rgb(45 212 191 / .35)", rot: -19, dx: "5%", dy: "40%", dur: 55 },
+            { left: 52, top: 66, w: 38, h: 5, color: "rgb(184 242 58 / .35)", rot: -21, dx: "-6%", dy: "-50%", dur: 60 },
+        ],
+    },
+];
+
+export default function Wallpaper() {
+    const ref = useRef<HTMLDivElement>(null);
+
+    // Parallax mouse ringan (hanya untuk mouse, dimatikan jika reduced motion)
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (!window.matchMedia("(pointer: fine)").matches) return;
+
+        const onMove = (e: MouseEvent) => {
+            el.style.setProperty("--mx", (e.clientX / window.innerWidth - 0.5).toFixed(3));
+            el.style.setProperty("--my", (e.clientY / window.innerHeight - 0.5).toFixed(3));
+        };
+        window.addEventListener("mousemove", onMove, { passive: true });
+        return () => window.removeEventListener("mousemove", onMove);
+    }, []);
+
     return (
-        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-            <path
-                className="fill-folder"
-                d="M2 6.5A1.5 1.5 0 0 1 3.5 5h5.2c.4 0 .78.16 1.06.44L11 6.7h9.5A1.5 1.5 0 0 1 22 8.2v9.3a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17.5v-11Z"
-            />
-        </svg>
-    );
-}
-
-export function MailIcon({ className }: P) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-            aria-hidden="true"
-        >
-            <rect x="3" y="5" width="18" height="14" rx="2.5" />
-            <path d="m4 7.5 8 6 8-6" />
-        </svg>
-    );
-}
-
-const CLOUD = "M7 18a4 4 0 0 1-.6-7.95A5.5 5.5 0 0 1 17 9.5a4.25 4.25 0 0 1 .5 8.5H7Z";
-
-export function WeatherIcon({ kind, className }: P & { kind: WeatherKind }) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-            aria-hidden="true"
-        >
-            {kind === "sun" && (
-                <>
-                    <circle cx="12" cy="12" r="4" />
-                    <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" />
-                </>
-            )}
-            {kind === "partly" && (
-                <>
-                    <circle cx="8" cy="8" r="2.5" />
-                    <path d="M8 2.5v1M2.5 8h1M4.1 4.1l.7.7M11.9 4.1l-.7.7" />
-                    <path d="M9 19a3.5 3.5 0 0 1-.5-6.96A4.75 4.75 0 0 1 17.7 12 3.5 3.5 0 0 1 17.5 19H9Z" />
-                </>
-            )}
-            {kind === "cloud" && <path d={CLOUD} />}
-            {kind === "rain" && (
-                <>
-                    <path d="M7 15a4 4 0 0 1-.6-7.95A5.5 5.5 0 0 1 17 6.5a4.25 4.25 0 0 1 .5 8.5H7Z" />
-                    <path d="M8 18.5 7 21M12.5 18.5 11.5 21M17 18.5 16 21" />
-                </>
-            )}
-        </svg>
+        <div ref={ref} className="wallpaper" aria-hidden="true">
+            {LAYERS.map((layer, i) => (
+                <div key={i} className="wp-layer" style={{ "--depth": layer.depth } as CSSProperties}>
+                    {layer.bands.map((b, j) => (
+                        <div
+                            key={j}
+                            className="wp-band"
+                            style={
+                                {
+                                    left: `${b.left}%`,
+                                    top: `${b.top}%`,
+                                    width: `${b.w}%`,
+                                    height: `${b.h}%`,
+                                    "--c": b.color,
+                                    "--rot": `${b.rot}deg`,
+                                    "--dx": b.dx,
+                                    "--dy": b.dy,
+                                    "--dur": `${b.dur}s`,
+                                    "--blur": `${layer.blur}px`,
+                                } as CSSProperties
+                            }
+                        />
+                    ))}
+                </div>
+            ))}
+            <div className="wp-vignette" />
+            <div className="wp-grain" />
+        </div>
     );
 }

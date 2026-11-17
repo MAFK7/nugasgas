@@ -73,7 +73,7 @@ body {
 }
 
 .bg-accent-gradient {
-  background: var(--gradient-accent);
+  background-image: var(--gradient-accent);
 }
 
 .flyout {
@@ -101,6 +101,20 @@ body {
   background: var(--bg);
   --mx: 0;
   --my: 0;
+}
+
+.wallpaper {
+  animation: wp-in 1.2s ease-out both;
+}
+
+@keyframes wp-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .wp-layer {
@@ -153,6 +167,10 @@ body {
   }
 
   .flyout {
+    animation: none;
+  }
+
+  .wallpaper {
     animation: none;
   }
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
+import { DesktopProvider } from "@/components/DesktopContext";
+import Wallpaper from "@/components/Wallpaper";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,7 +26,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "nugas",
+  title: "nugas.my.id",
 };
 
 export default function RootLayout({
@@ -35,7 +37,12 @@ export default function RootLayout({
       lang="id"
       className={`${inter.variable} ${bricolage.variable} ${instrumentSerif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <DesktopProvider>
+          <Wallpaper />
+          {children}
+        </DesktopProvider>
+      </body>
     </html>
   );
 }
