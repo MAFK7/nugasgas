@@ -103,3 +103,112 @@ export function ArrowUpRightIcon({ className }: { className?: string }) {
         </svg>
     );
 }
+
+const strokeProps = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+} as const;
+
+export function ArrowLeftIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M19 12H5m0 0 6-6m-6 6 6 6" />
+        </svg>
+    );
+}
+
+export function ArrowRightIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M5 12h14m0 0-6-6m6 6-6 6" />
+        </svg>
+    );
+}
+
+export function ArrowUpIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M12 19V5m0 0-6 6m6-6 6 6" />
+        </svg>
+    );
+}
+
+export function ChevronRightIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="m9 6 6 6-6 6" />
+        </svg>
+    );
+}
+
+export function ComputerIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+            <rect x="3" y="4" width="18" height="12" rx="2" fill="currentColor" />
+            <path d="M8 20h8M12 16v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+        </svg>
+    );
+}
+
+export function GridIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <rect x="4" y="4" width="6.5" height="6.5" rx="1" />
+            <rect x="13.5" y="4" width="6.5" height="6.5" rx="1" />
+            <rect x="4" y="13.5" width="6.5" height="6.5" rx="1" />
+            <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1" />
+        </svg>
+    );
+}
+
+export function ListIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />
+        </svg>
+    );
+}
+
+export function SearchIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m20 20-4-4" />
+        </svg>
+    );
+}
+
+export function SortIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M4 7h16M7 12h10M10 17h4" />
+        </svg>
+    );
+}
+
+export function ChevronDownIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+        </svg>
+    );
+}
+
+export function CheckIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="m5 12.5 4.5 4.5L19 7.5" />
+        </svg>
+    );
+}
+
+export function XIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" {...strokeProps} className={className} aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+    );
+}
