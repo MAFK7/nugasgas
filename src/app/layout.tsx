@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import { DesktopProvider } from "@/components/DesktopContext";
+import RegistrasiSW from "@/components/RegistrasiSW";
 import Wallpaper from "@/components/Wallpaper";
+import { META } from "@/data/meta";
+import { SITUS_URL } from "@/lib/situs";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,7 +29,32 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "nugas.my.id",
+  metadataBase: new URL(SITUS_URL),
+  title: META.judul,
+  description: META.deskripsi,
+  applicationName: META.nama,
+  icons: {
+    icon: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    siteName: META.nama,
+    title: META.judul,
+    description: META.deskripsi,
+    images: [META.gambar],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: META.judul,
+    description: META.deskripsi,
+    images: [META.gambar.url],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: META.warnaTema,
 };
 
 export default function RootLayout({
@@ -42,6 +70,7 @@ export default function RootLayout({
           <Wallpaper />
           {children}
         </DesktopProvider>
+        <RegistrasiSW />
       </body>
     </html>
   );

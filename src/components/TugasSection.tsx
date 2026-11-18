@@ -1,12 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Explorer from "./explorer/Explorer";
 import { FolderIcon } from "./icons";
 import WindowFrame from "./WindowFrame";
 
-export default function TugasSection() {
+export default function TugasSection({ semesterAwal = null }: { semesterAwal?: number | null }) {
     const ref = useRef<HTMLElement>(null);
+
+    // Dibuka lewat alamat /semester-N: langsung gulir ke jendela Tugas
+    useEffect(() => {
+        if (semesterAwal === null) return;
+        const t = setTimeout(() => {
+            document.getElementById("tugas")?.scrollIntoView({ behavior: "auto", block: "start" });
+        }, 0);
+        return () => clearTimeout(t);
+    }, [semesterAwal]);
 
     return (
         <section
@@ -26,7 +35,7 @@ export default function TugasSection() {
                 dragConstraints={ref}
                 className="w-full max-w-[1200px]"
             >
-                <Explorer />
+                <Explorer semesterAwal={semesterAwal} />
             </WindowFrame>
         </section>
     );
