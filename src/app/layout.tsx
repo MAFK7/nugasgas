@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import { DesktopProvider } from "@/components/DesktopContext";
+import MenuDesktop from "@/components/MenuDesktop";
 import RegistrasiSW from "@/components/RegistrasiSW";
 import Wallpaper from "@/components/Wallpaper";
 import { META } from "@/data/meta";
@@ -69,6 +70,7 @@ export default function RootLayout({
         <DesktopProvider>
           <Wallpaper />
           {children}
+          <MenuDesktop />
         </DesktopProvider>
         <RegistrasiSW />
       </body>

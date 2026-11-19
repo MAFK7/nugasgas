@@ -16,6 +16,7 @@ import AddressBar from "./AddressBar";
 import ContextMenu, { type MenuItem } from "./ContextMenu";
 import DetailsView from "./DetailsView";
 import FolderView from "./FolderView";
+import PropertiDialog from "./PropertiDialog";
 import RootView from "./RootView";
 import Sidebar from "./Sidebar";
 import StatusBar from "./StatusBar";
@@ -69,6 +70,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
     const [terpilih, setTerpilih] = useState<string | null>(null);
     const [menu, setMenu] = useState<{ item: Item; x: number; y: number } | null>(null);
     const [toast, setToast] = useState<string | null>(null);
+    const [properti, setProperti] = useState<Tugas | null>(null);
 
     const rootRef = useRef<HTMLDivElement>(null);
     const areaRef = useRef<HTMLDivElement>(null);
@@ -103,6 +105,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
             setPage(1);
             setTerpilih(null);
             setMenu(null);
+            setProperti(null);
         };
         window.addEventListener("popstate", onPop);
         return () => window.removeEventListener("popstate", onPop);
@@ -138,6 +141,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
         setPage(1);
         setTerpilih(null);
         setMenu(null);
+        setProperti(null);
     };
 
     const ke = (tujuan: Lokasi) => {
@@ -187,6 +191,11 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
         rootRef.current?.focus({ preventScroll: true });
     }, []);
 
+    const tutupProperti = useCallback(() => {
+        setProperti(null);
+        rootRef.current?.focus({ preventScroll: true });
+    }, []);
+
     const bukaItem = (it: Item) => {
         if (it.kind === "folder") ke(it.semester);
         else window.location.assign(it.tugas.url);
@@ -218,6 +227,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
                 },
             },
             { label: "Salin tautan", onPilih: () => { tutupMenu(); void salinTautan(t); } },
+            { label: "Properti", onPilih: () => { tutupMenu(); setProperti(t); } },
         ];
     };
 
@@ -258,7 +268,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
     }, [terpilih]);
 
     const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-        if (menu) return;
+        if (menu || properti) return;
 
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
             e.preventDefault();
@@ -279,6 +289,14 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
                 pindah(e.key);
                 break;
             case "Enter":
+                if (e.altKey) {
+                    // Alt+Enter = Properti
+                    if (itemTerpilih?.kind === "tugas") {
+                        e.preventDefault();
+                        setProperti(itemTerpilih.tugas);
+                    }
+                    break;
+                }
                 if (itemTerpilih) {
                     e.preventDefault();
                     bukaItem(itemTerpilih);
@@ -367,6 +385,7 @@ export default function Explorer({ semesterAwal = null }: { semesterAwal?: numbe
             />
 
             {menu && <ContextMenu x={menu.x} y={menu.y} items={buatMenu(menu.item)} onTutup={tutupMenu} />}
+            {properti && <PropertiDialog tugas={properti} onTutup={tutupProperti} />}
             <Toast pesan={toast} />
         </div>
     );

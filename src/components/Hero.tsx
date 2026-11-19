@@ -1,11 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
+import { useRef } from "react";
 import { scrollToSection } from "@/lib/scroll";
 import { useDesktop } from "./DesktopContext";
 import DesktopIcons from "./DesktopIcons";
 import HeroCharacter from "./HeroCharacter";
 import { ArrowDownIcon, ArrowUpRightIcon, FileIcon } from "./icons";
+import RecycleBin from "./RecycleBin";
 import WindowFrame from "./WindowFrame";
 
 const container: Variants = {
@@ -27,10 +29,12 @@ export default function Hero() {
     const reduce = useReducedMotion();
     const { closed } = useDesktop();
     const profilOpen = !closed.includes("profil");
+    const heroRef = useRef<HTMLElement>(null);
 
     return (
-        <section id="home" className="relative h-dvh min-h-[700px] overflow-hidden">
+        <section id="home" ref={heroRef} className="relative h-dvh min-h-[700px] overflow-hidden">
             <DesktopIcons />
+            <RecycleBin batas={heroRef} />
 
             <div className="relative z-10 flex h-full items-center px-6 pb-16 sm:px-10 lg:pl-28">
                 <motion.div

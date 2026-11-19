@@ -212,3 +212,14 @@ export function XIcon({ className }: P) {
         </svg>
     );
 }
+
+export function BinIcon({ className }: P) {
+    return (
+        <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+            <path d="M9 4.5v-.8a.7.7 0 0 1 .7-.7h4.6a.7.7 0 0 1 .7.7v.8" fill="none" stroke="#C9D6D3" strokeWidth="1.4" strokeLinecap="round" />
+            <rect x="3.5" y="4.5" width="17" height="2.2" rx="1.1" fill="#C9D6D3" />
+            <path d="M5.5 8.2h13l-.95 11.1a1.7 1.7 0 0 1-1.7 1.55H8.15a1.7 1.7 0 0 1-1.7-1.55L5.5 8.2Z" fill="#A9BDB9" fillOpacity=".9" />
+            <path d="M9.5 10.8v7M12 10.8v7M14.5 10.8v7" stroke="#31504C" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+    );
+}

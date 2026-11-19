@@ -72,6 +72,10 @@ body {
   box-shadow: var(--window-shadow);
 }
 
+.mica-solid {
+  background: rgb(16 22 25 / 0.97);
+}
+
 .bg-accent-gradient {
   background-image: var(--gradient-accent);
 }
@@ -110,6 +114,12 @@ body {
 
 .wallpaper {
   animation: wp-in 1.2s ease-out both;
+}
+
+.wp-fade {
+  position: absolute;
+  inset: 0;
+  animation: wp-in 0.8s ease-out both;
 }
 
 @keyframes wp-in {
@@ -176,6 +186,10 @@ body {
   }
 
   .wallpaper {
+    animation: none;
+  }
+
+  .wp-fade {
     animation: none;
   }
 }

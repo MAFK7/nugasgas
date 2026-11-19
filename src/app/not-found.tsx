@@ -21,6 +21,7 @@ export default function NotFound() {
                 </Link>
                 <p className="mt-10 font-mono text-xs text-white/80">{TEKS_404.kode}</p>
             </div>
+            <main data-no-desktop-menu className="fixed inset-0 z-[100] overflow-y-auto bg-[#0067C0] text-white"></main>
         </main>
     );
 }

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { CheckIcon } from "@/components/icons";
 
-export type MenuItem = { label: string; onPilih: () => void };
+/** aktif diisi (true/false) hanya untuk menu pilihan, supaya muncul kolom centang. */
+export type MenuItem = { label: string; onPilih: () => void; aktif?: boolean };
 
 type Props = { x: number; y: number; items: MenuItem[]; onTutup: () => void };
 
@@ -11,6 +13,7 @@ const TINGGI_ITEM = 34;
 export default function ContextMenu({ x, y, items, onTutup }: Props) {
     const ref = useRef<HTMLDivElement>(null);
     const tutup = useRef(onTutup);
+    const adaCentang = items.some((it) => it.aktif !== undefined);
 
     useEffect(() => {
         tutup.current = onTutup;
@@ -65,10 +68,16 @@ export default function ContextMenu({ x, y, items, onTutup }: Props) {
                 <button
                     key={it.label}
                     type="button"
-                    role="menuitem"
+                    role={adaCentang ? "menuitemradio" : "menuitem"}
+                    aria-checked={adaCentang ? it.aktif === true : undefined}
                     onClick={it.onPilih}
-                    className="block w-full px-3 py-[7px] text-left text-[13px] text-text outline-none hover:bg-white/10 focus-visible:bg-white/10"
+                    className="flex w-full items-center gap-2 px-3 py-[7px] text-left text-[13px] text-text outline-none hover:bg-white/10 focus-visible:bg-white/10"
                 >
+                    {adaCentang && (
+                        <span className="grid h-4 w-4 shrink-0 place-items-center">
+                            {it.aktif && <CheckIcon className="h-3.5 w-3.5 text-aqua" />}
+                        </span>
+                    )}
                     {it.label}
                 </button>
             ))}
