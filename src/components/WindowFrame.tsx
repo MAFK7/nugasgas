@@ -74,6 +74,11 @@ export default function WindowFrame({
     close(id);
   };
 
+  // Jendela yang dibesarkan: penuh layar; kalau dilipat, tingginya tinggal title bar
+  const posisi = maximized
+    ? `fixed inset-x-3 top-3 z-40 sm:inset-x-6 sm:top-6 ${collapsed ? "" : "bottom-24"}`
+    : "relative";
+
   return (
     <div ref={wrapRef} className={className} style={lockH ? { height: lockH } : undefined}>
       <AnimatePresence initial={false}>
@@ -91,8 +96,7 @@ export default function WindowFrame({
             animate={{ opacity: 1, scale: 1, ...(collapseOnClose ? { height: "auto" } : {}) }}
             exit={{ opacity: 0, scale: 0.95, ...h0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className={`mica flex flex-col overflow-hidden rounded-xl ${maximized ? "fixed inset-x-3 bottom-24 top-3 z-40 sm:inset-x-6 sm:top-6" : "relative"
-              }`}
+            className={`mica flex flex-col overflow-hidden rounded-xl ${posisi}`}
           >
             <div
               onPointerDown={(e) => {
@@ -161,11 +165,12 @@ export default function WindowFrame({
               </div>
             </div>
 
+            {/* Tinggi dianimasikan; flex-basis harus auto (bukan flex-1) supaya "height" dipakai */}
             <motion.div
               initial={false}
               animate={{ height: collapsed ? 0 : "auto", opacity: collapsed ? 0 : 1 }}
               transition={{ duration: 0.18 }}
-              className="min-h-0 flex-1 overflow-hidden"
+              className={`min-h-0 overflow-hidden ${collapsed ? "grow-0" : "grow"}`}
             >
               {children}
             </motion.div>

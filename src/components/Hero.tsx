@@ -32,11 +32,15 @@ export default function Hero() {
     const heroRef = useRef<HTMLElement>(null);
 
     return (
-        <section id="home" ref={heroRef} className="relative h-dvh min-h-[700px] overflow-hidden">
+        <section
+            id="home"
+            ref={heroRef}
+            className="relative flex min-h-dvh flex-col overflow-hidden lg:block lg:h-dvh lg:min-h-[700px]"
+        >
             <DesktopIcons />
             <RecycleBin batas={heroRef} />
 
-            <div className="relative z-10 flex h-full items-center px-6 pb-16 sm:px-10 lg:pl-28">
+            <div className="relative z-10 flex items-start px-6 pb-6 pt-28 sm:px-10 lg:h-full lg:items-center lg:pb-16 lg:pl-28 lg:pt-0">
                 <motion.div
                     variants={container}
                     initial={reduce ? false : "hidden"}
@@ -115,21 +119,6 @@ export default function Hero() {
             </div>
 
             <HeroCharacter />
-
-            <motion.button
-                type="button"
-                aria-label="Gulir ke Tugas"
-                onClick={() => scrollToSection("tugas")}
-                initial={reduce ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2.4, duration: 0.5 }}
-                className="absolute bottom-24 left-1/2 z-10 -translate-x-1/2 text-text-2 transition-colors hover:text-text"
-            >
-                <svg width="24" height="36" viewBox="0 0 24 36" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-                    <rect x="2" y="2" width="20" height="32" rx="10" />
-                    <path d="M12 9v6" />
-                </svg>
-            </motion.button>
         </section>
     );
 }

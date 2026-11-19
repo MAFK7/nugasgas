@@ -16,7 +16,6 @@ const baris: Variants = {
     show: { opacity: 1, height: "auto", x: 0, transition: { duration: 0.28, ease: "easeOut" } },
 };
 
-/** Jendela Recycle Bin: isinya muncul satu per satu setiap kali dibuka. */
 export default function RecycleBin({ batas }: { batas: RefObject<HTMLElement | null> }) {
     const reduce = useReducedMotion();
 
@@ -28,8 +27,7 @@ export default function RecycleBin({ batas }: { batas: RefObject<HTMLElement | n
             tab
             draggable
             dragConstraints={batas}
-            className="absolute left-28 top-16 z-30 w-[min(440px,calc(100%-2rem))]"
-        >
+            className="absolute inset-x-4 top-28 z-30 sm:inset-x-auto sm:left-28 sm:top-16 sm:w-[440px]"        >
             <motion.ul
                 variants={daftar}
                 initial={reduce ? false : "hidden"}
