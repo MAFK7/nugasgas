@@ -12,10 +12,10 @@ const SECTIONS: SectionId[] = ["home", "tugas", "contact"];
 const pad = (n: number) => String(n).padStart(2, "0");
 
 const itemCls =
-    "relative flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-[13px] transition-colors hover:bg-white/10 hover:text-text";
+    "relative flex h-9 items-center gap-1.5 rounded-lg px-2 text-[13px] transition-colors hover:bg-white/10 hover:text-text coarse:h-10 sm:px-2.5";
 
 function Divider() {
-    return <span className="mx-1 h-5 w-px bg-white/12" aria-hidden="true" />;
+    return <span className="mx-0.5 h-5 w-px bg-white/12 sm:mx-1" aria-hidden="true" />;
 }
 
 export default function Taskbar() {
@@ -130,7 +130,7 @@ export default function Taskbar() {
                 {flyout === "weather" && weather && <WeatherFlyout weather={weather} />}
                 {flyout === "calendar" && now && <CalendarFlyout today={now} />}
 
-                <nav aria-label="Taskbar" className="mica flex h-12 items-center rounded-full px-2">
+                <nav aria-label="Taskbar" className="mica flex h-12 items-center rounded-full px-1.5 sm:px-2">
                     {weather && (
                         <>
                             <button
@@ -139,7 +139,10 @@ export default function Taskbar() {
                                 aria-expanded={flyout === "weather"}
                                 className={`${itemCls} text-text-2`}
                             >
-                                <WeatherIcon kind={describe(weather.code).kind} className="h-4 w-4 text-lime" />
+                                <WeatherIcon
+                                    kind={describe(weather.code).kind}
+                                    className="h-4 w-4 text-lime max-[339px]:hidden"
+                                />
                                 <span>
                                     {weather.temp}°C<span className="hidden sm:inline"> Bandung</span>
                                 </span>
@@ -149,8 +152,8 @@ export default function Taskbar() {
                     )}
 
                     {navItem("home", "Home")}
-                    {navItem("tugas", "Tugas", <FolderIcon className="h-4 w-4" />)}
-                    {navItem("contact", "Contact", <MailIcon className="h-4 w-4" />)}
+                    {navItem("tugas", "Tugas", <FolderIcon className="hidden h-4 w-4 min-[380px]:block" />)}
+                    {navItem("contact", "Contact", <MailIcon className="hidden h-4 w-4 min-[380px]:block" />)}
 
                     <Divider />
 

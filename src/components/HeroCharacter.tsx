@@ -21,7 +21,7 @@ export default function HeroCharacter() {
 
     return (
         <motion.div
-            className="pointer-events-none relative z-10 ml-auto mt-auto h-[clamp(260px,42dvh,400px)] lg:absolute lg:bottom-0 lg:right-0 lg:ml-0 lg:mt-0 lg:h-[80%]"
+            className="pointer-events-none absolute right-0 top-4 z-0 h-[clamp(220px,72vw,320px)] md:h-[360px] lg:bottom-0 lg:top-auto lg:z-10 lg:h-[80%]"
             style={{ transformOrigin: "100% 100%" }}
             initial={reduce ? false : { x: "105%" }}
             animate={{ x: 0 }}

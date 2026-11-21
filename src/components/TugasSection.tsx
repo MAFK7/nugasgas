@@ -21,7 +21,7 @@ export default function TugasSection({ semesterAwal = null }: { semesterAwal?: n
         <section
             id="tugas"
             ref={ref}
-            className="relative flex min-h-dvh flex-col items-center justify-center px-4 py-20 sm:px-8"
+            className="relative flex min-h-dvh flex-col items-center justify-center px-2 py-20 sm:px-8"
         >
             <h2 className="mb-8 text-center font-display text-3xl text-text sm:text-4xl">Tugas Kuliah</h2>
 

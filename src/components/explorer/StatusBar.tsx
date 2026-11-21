@@ -6,11 +6,11 @@ type Props = {
 };
 
 const btn =
-    "grid h-6 min-w-6 place-items-center rounded-md px-1.5 transition-colors hover:bg-white/10 hover:text-text disabled:pointer-events-none disabled:opacity-35";
+    "grid h-6 min-w-6 place-items-center rounded-md px-1.5 transition-colors hover:bg-white/10 hover:text-text disabled:pointer-events-none disabled:opacity-35 coarse: h-9 coarse: min - w - 9";
 
 export default function StatusBar({ jumlah, halaman, jumlahHalaman, onHalaman }: Props) {
     return (
-        <div className="flex h-9 shrink-0 items-center justify-between border-t border-white/10 px-4 font-mono text-xs text-text-2">
+        <div className="flex h-9 shrink-0 items-center justify-between border-t border-white/10 px-4 font-mono text-xs text-text-2 coarse:h-12">
             <span>{jumlah} item</span>
 
             {jumlahHalaman > 1 && (

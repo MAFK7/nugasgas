@@ -35,7 +35,7 @@ export default function Hero() {
         <section
             id="home"
             ref={heroRef}
-            className="relative flex min-h-dvh flex-col overflow-hidden lg:block lg:h-dvh lg:min-h-[700px]"
+            className="relative flex select-none flex-col overflow-hidden lg:block lg:h-dvh lg:min-h-[700px]"
         >
             <DesktopIcons />
             <RecycleBin batas={heroRef} />

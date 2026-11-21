@@ -7,8 +7,9 @@ export type MenuItem = { label: string; onPilih: () => void; aktif?: boolean };
 
 type Props = { x: number; y: number; items: MenuItem[]; onTutup: () => void };
 
-const LEBAR = 224;
+const LEBAR = 248;
 const TINGGI_ITEM = 34;
+const TINGGI_ITEM_SENTUH = 46;
 
 export default function ContextMenu({ x, y, items, onTutup }: Props) {
     const ref = useRef<HTMLDivElement>(null);
@@ -53,7 +54,8 @@ export default function ContextMenu({ x, y, items, onTutup }: Props) {
         };
     }, []);
 
-    const tinggi = items.length * TINGGI_ITEM + 8;
+    const sentuh = window.matchMedia("(pointer: coarse)").matches;
+    const tinggi = items.length * (sentuh ? TINGGI_ITEM_SENTUH : TINGGI_ITEM) + 8;
     const left = Math.max(8, Math.min(x, window.innerWidth - LEBAR - 8));
     const top = Math.max(8, Math.min(y, window.innerHeight - tinggi - 8));
 
@@ -71,7 +73,7 @@ export default function ContextMenu({ x, y, items, onTutup }: Props) {
                     role={adaCentang ? "menuitemradio" : "menuitem"}
                     aria-checked={adaCentang ? it.aktif === true : undefined}
                     onClick={it.onPilih}
-                    className="flex w-full items-center gap-2 px-3 py-[7px] text-left text-[13px] text-text outline-none hover:bg-white/10 focus-visible:bg-white/10"
+                    className="flex w-full items-center gap-2 px-3 py-[7px] text-left text-[13px] text-text outline-none hover:bg-white/10 focus-visible:bg-white/10 coarse:py-3 coarse:text-[14px]"
                 >
                     {adaCentang && (
                         <span className="grid h-4 w-4 shrink-0 place-items-center">

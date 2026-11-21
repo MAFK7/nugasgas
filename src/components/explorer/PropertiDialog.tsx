@@ -101,14 +101,14 @@ export default function PropertiDialog({ tugas, onTutup }: Props) {
                         ref={okRef}
                         type="button"
                         onClick={onTutup}
-                        className="h-8 rounded-md bg-accent-gradient px-6 text-[13px] font-semibold text-on-accent transition hover:brightness-110"
+                        className="h-8 rounded-md bg-accent-gradient coarse:h-10 px-6 text-[13px] font-semibold text-on-accent transition hover:brightness-110"
                     >
                         OK
                     </button>
                     <button
                         type="button"
                         onClick={onTutup}
-                        className="h-8 rounded-md border border-white/15 px-5 text-[13px] text-text transition-colors hover:bg-white/10"
+                        className="h-8 rounded-md border border-white/15 coarse:h-10 px-5 text-[13px] text-text transition-colors hover:bg-white/10"
                     >
                         Batal
                     </button>

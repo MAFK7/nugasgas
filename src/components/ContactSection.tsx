@@ -13,7 +13,7 @@ export default function ContactSection() {
         <section
             id="contact"
             ref={ref}
-            className="relative flex min-h-dvh items-center justify-center px-4 py-24 sm:px-8"
+            className="relative flex min-h-dvh items-center justify-center px-2 py-24 sm:px-8"
         >
             <WindowFrame
                 id="contact"

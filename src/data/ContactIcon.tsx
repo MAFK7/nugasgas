@@ -87,7 +87,9 @@ export default function ContactIcon({ k }: { k: Kontak }) {
             </motion.span>
 
             <span className="mt-3 text-sm font-semibold text-text">{k.nama}</span>
-            <span className="mt-0.5 w-full truncate text-xs text-text-2">{k.detail}</span>
+            <span className="mt-0.5 w-full truncate text-xs text-text-2 max-sm:overflow-visible max-sm:whitespace-normal max-sm:break-all">
+                {k.detail}
+            </span>
         </motion.a>
     );
 }

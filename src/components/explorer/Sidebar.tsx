@@ -27,7 +27,7 @@ export default function Sidebar({ folders, aktif, onKe }: Props) {
                         type="button"
                         onClick={() => onKe(e.lokasi)}
                         aria-current={on ? "page" : undefined}
-                        className={`relative flex shrink-0 items-center gap-2.5 rounded-lg px-3 py-2 text-left text-[13px] transition-colors md:w-full ${on ? "bg-select text-text" : "text-text-2 hover:bg-white/5 hover:text-text"
+                        className={`relative flex shrink-0 items-center gap-2.5 rounded-lg px-3 py-2 coarse:py-2.5 text-left text-[13px] transition-colors md:w-full ${on ? "bg-select text-text" : "text-text-2 hover:bg-white/5 hover:text-text"
                             }`}
                     >
                         {on && (

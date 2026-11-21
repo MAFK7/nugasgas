@@ -42,7 +42,7 @@ export default function CalendarFlyout({ today }: { today: Date }) {
                         type="button"
                         onClick={() => shift(-1)}
                         aria-label="Bulan sebelumnya"
-                        className="grid h-7 w-7 place-items-center rounded-md text-text-2 hover:bg-white/10 hover:text-text"
+                        className="grid h-7 w-7 place-items-center rounded-md text-text-2 hover:bg-white/10 hover:text-text coarse:h-10 coarse:w-10"
                     >
                         ‹
                     </button>
@@ -50,7 +50,7 @@ export default function CalendarFlyout({ today }: { today: Date }) {
                         type="button"
                         onClick={() => shift(1)}
                         aria-label="Bulan berikutnya"
-                        className="grid h-7 w-7 place-items-center rounded-md text-text-2 hover:bg-white/10 hover:text-text"
+                        className="grid h-7 w-7 place-items-center rounded-md text-text-2 hover:bg-white/10 hover:text-text coarse:h-10 coarse:w-10"
                     >
                         ›
                     </button>

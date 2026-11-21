@@ -20,14 +20,14 @@ type Props = {
 };
 
 const navBtn =
-    "grid h-8 w-8 place-items-center rounded-md text-text-2 transition-colors hover:bg-white/10 hover:text-text disabled:pointer-events-none disabled:opacity-35";
+    "grid h-8 w-8 place-items-center rounded-md text-text-2 transition-colors hover:bg-white/10 hover:text-text disabled:pointer-events-none disabled:opacity-35 coarse:h-10 coarse:w-10";
 
 function Crumb({ onClick, children }: { onClick: () => void; children: ReactNode }) {
     return (
         <button
             type="button"
             onClick={onClick}
-            className="rounded px-1.5 py-0.5 text-text-2 transition-colors hover:bg-white/10 hover:text-text"
+            className="rounded px-1.5 py-0.5 text-text-2 transition-colors hover:bg-white/10 hover:text-text coarse:py-2"
         >
             {children}
         </button>
@@ -58,10 +58,13 @@ export default function AddressBar({
                 <ArrowUpIcon className="h-4 w-4" />
             </button>
 
-            <div className="ml-1 flex h-8 min-w-0 flex-1 items-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-white/10 bg-white/[0.03] px-2.5 text-[13px]">
+            <div className="ml-1 flex h-8 min-w-0 flex-1 items-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-white/10 bg-white/[0.03] px-2.5 text-[13px] coarse:h-10">
                 <ComputerIcon className="mr-1 h-3.5 w-3.5 shrink-0 text-aqua" />
-                <Crumb onClick={() => onKe(null)}>Komputer Ini</Crumb>
-                <Sep />
+                {/* Di layar sempit "Komputer Ini" disembunyikan supaya folder aktif tetap terlihat */}
+                <span className="hidden items-center gap-1 sm:flex">
+                    <Crumb onClick={() => onKe(null)}>Komputer Ini</Crumb>
+                    <Sep />
+                </span>
                 {lokasi === null && !hasil ? (
                     <span className="px-1.5 text-text">Tugas</span>
                 ) : (

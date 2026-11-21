@@ -71,7 +71,7 @@ export default function Toolbar({
                     aria-haspopup="menu"
                     aria-expanded={buka}
                     onClick={() => setBuka((b) => !b)}
-                    className="inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-[13px] text-text-2 transition-colors hover:bg-white/10 hover:text-text"
+                    className="inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-[13px] text-text-2 transition-colors hover:bg-white/10 hover:text-text coarse:h-10"
                 >
                     <SortIcon className="h-4 w-4" />
                     Urutkan
@@ -91,7 +91,7 @@ export default function Toolbar({
                                     setBuka(false);
                                     onKeDaftar();
                                 }}
-                                className="flex w-full items-center gap-2 px-3 py-[7px] text-left text-[13px] text-text hover:bg-white/10"
+                                className="flex w-full items-center gap-2 px-3 py-[7px] text-left text-[13px] text-text hover:bg-white/10 coarse:py-3"
                             >
                                 <span className="grid h-4 w-4 place-items-center">
                                     {urut === o.mode && <CheckIcon className="h-3.5 w-3.5 text-aqua" />}
@@ -112,7 +112,7 @@ export default function Toolbar({
                         aria-label={label}
                         title={label}
                         onClick={() => onTampilan(t)}
-                        className={`grid h-7 w-8 place-items-center rounded transition-colors ${tampilan === t ? "bg-aqua/20 text-text" : "text-text-2 hover:text-text"
+                        className={`grid h-7 w-8 place-items-center rounded transition-colors coarse:h-9 coarse:w-10 ${tampilan === t ? "bg-aqua/20 text-text" : "text-text-2 hover:text-text"
                             }`}
                     >
                         <Ikon className="h-4 w-4" />
@@ -140,7 +140,7 @@ export default function Toolbar({
                     aria-label="Cari di Tugas"
                     autoComplete="off"
                     spellCheck={false}
-                    className="h-8 w-full rounded-md border border-white/10 bg-white/[0.04] pl-3 pr-8 text-[13px] text-text outline-none transition-colors placeholder:text-text-2 focus:border-aqua/60"
+                    className="h-8 w-full rounded-md border border-white/10 bg-white/[0.04] pl-3 pr-8 text-[13px] text-text outline-none transition-colors placeholder:text-text-2 focus:border-aqua/60 coarse:h-10 coarse:text-[16px]"
                 />
                 {kueri ? (
                     <button
